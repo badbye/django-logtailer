@@ -10,8 +10,8 @@ class LogFile(models.Model):
         return '%s' % self.name
     
     class Meta:
-        verbose_name = _('Log file')
-        verbose_name_plural = _('Log files')
+        verbose_name = _('Log file / 日志')
+        verbose_name_plural = _('Log files / 日志')
 
 
 class Filter(models.Model):
@@ -22,19 +22,19 @@ class Filter(models.Model):
         return '%s | %s: %s ' % (self.name, _('pattern'), self.regex)
     
     class Meta:
-        verbose_name = _('filter')
-        verbose_name_plural = _('filters')
+        verbose_name = _('filter / 过滤器')
+        verbose_name_plural = _('filters / 过滤器')
 
 
 class LogsClipboard(models.Model):
     name = models.CharField(_('name'), max_length=180)
     notes = models.TextField(_('notes'), blank=True, null=True)
     logs = models.TextField(_('logs'))
-    log_file = models.ForeignKey(LogFile, verbose_name=_('log file'))
+    log_file = models.ForeignKey(LogFile, on_delete=models.CASCADE, verbose_name=_('log file'))
     
     def __unicode__(self):
         return "%s" % self.name
     
     class Meta:
-        verbose_name = _('logs clipboard')
-        verbose_name_plural = _('logs clipboard')
+        verbose_name = _('logs clipboard / 保存的日志')
+        verbose_name_plural = _('logs clipboard / 保存的日志')

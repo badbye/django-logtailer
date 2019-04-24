@@ -13,7 +13,7 @@ var LogTailer = {
 };
 var _highlight = function(str, pattern, custom_class='log-highlight'){
 	let matched_text = str.match(pattern)[0];
-	return b.replace(matched_text, '<span class="' + custom_class + '">' + matched_text +  '</span>')
+	return str.replace(matched_text, '<span class="' + custom_class + '">' + matched_text +  '</span>')
 };
 LogTailer.getLines = function (){
 	LogTailer.currentScrollPosition = django.jQuery("#log-window").scrollTop();

@@ -3,8 +3,9 @@
 <form id="logfile_form" action="">
 	<div>
 		<div class="submit-row" style="text-align: left;">
-			<input type="button" id="start-button" value="{% trans "start_read" %}"> 
+			<input type="button" id="start-button" value="{% trans "start_read" %}">
 			<input type="button" id="stop-button" style="display: none;" value="{% trans "stop_read" %}">
+			<input type="button" id="clear-button" value="{% trans "clear" %}">
 			&nbsp;&nbsp;&nbsp;
 			|
 			&nbsp;&nbsp;&nbsp;
@@ -18,9 +19,7 @@
 			 <a id="save-logs" href="#"><input style="float: right;" type="button" id="save-rows" value="{% trans "save_selected_rows" %}"></a>
 		</div>
 		<div style="text-align: center; width: 100%; margin-bottom: 5px;">
-		    <div id="log-window" rows=40 style="width: 98%; text-align: left;word-break:break-all;
-		     background-color: #000; color: #ccc; font-size: 12px; height: 500px; overflow: auto; padding: 10px;
-		     line-height: 16px; margin: 0 auto;font-family:Monaco"></div>
+		    <div id="log-window" rows=40></div>
 		</div>
 	</div>
 </form>

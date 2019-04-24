@@ -6,13 +6,16 @@ django.jQuery('#stop-button').click(function() {
     LogTailer.stopReading();
 });
 
+django.jQuery('#clear-button').click(function () {
+	django.jQuery('#log-window').html("");
+});
 django.jQuery('#auto-scroll').click(function() {
     LogTailer.changeAutoScroll();
-});	
+});
 
 django.jQuery('#filter-select').change(function() {
 	LogTailer.customFilter();
-});		
+});
 
 django.jQuery('#log-window').html("")
 LogTailer.customFilter();
@@ -39,11 +42,11 @@ django.jQuery('#clipboard-form').submit(function() {
   	django.jQuery("#clipboard-error").html("No log lines selected");
   	error = true;
   }
-  
+
   if(!error){
   	django.jQuery.ajax({type: 'POST',
 					   url: clipboard_url,
-  	                   data: { 
+  	                   data: {
   	                   	 name: django.jQuery("#clipboard-name").val(),
   	                     notes: django.jQuery("#clipboard-notes").val(),
   	                     logs: django.jQuery("#clipboard-logs").val(),
@@ -52,10 +55,10 @@ django.jQuery('#clipboard-form').submit(function() {
   	                   },
   	                   success: function(result){
   	                   	   alert(result);
-  	                   	   django.jQuery("#save-logs").colorbox.close();	
-  	                   }, 
+  	                   	   django.jQuery("#save-logs").colorbox.close();
+  	                   },
   	                   dataType: "text"});
   }
-  
+
   return false;
 });

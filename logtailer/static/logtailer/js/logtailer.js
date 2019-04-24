@@ -8,8 +8,13 @@ var LogTailer = {
 	scroll: true,
 	file_id: 0,
 	first_read: true,
-}
-
+	highlight: true,
+	// max_lines: 500
+};
+var _highlight = function(str, pattern, custom_class='log-highlight'){
+	let matched_text = str.match(pattern)[0];
+	return b.replace(matched_text, '<span class="' + custom_class + '">' + matched_text +  '</span>')
+};
 LogTailer.getLines = function (){
 	LogTailer.currentScrollPosition = django.jQuery("#log-window").scrollTop();
 	django.jQuery.ajax({
@@ -36,6 +41,7 @@ LogTailer.getHistory = function ( callback ){
 }
 
 LogTailer.printLines = function(result){
+	let logWindow = django.jQuery("#log-window");
 	if(django.jQuery("#apply-filter").is(':checked')){
 		for(var i=0;i<result.length;i++){
 			pattern = django.jQuery("#filter").val();
@@ -50,22 +56,22 @@ LogTailer.printLines = function(result){
 			}
 			position = result[i].search(regex);
 			if(position>-1){
-				django.jQuery("#log-window").append(result[i]);
+				logWindow.append(LogTailer.highlight ? _highlight(result[i], regex) : result[i]);
 			}
-		}		
+		}
 	}
 	else{
 		for(var i=0;i<result.length;i++){
 			if(result[i].length>0){
-				django.jQuery("#log-window").append(result[i]);
+				logWindow.append(result[i]);
 			}
 		}
 	}
 	if(LogTailer.scroll && result.length){
-		django.jQuery("#log-window").scrollTop(django.jQuery("#log-window")[0].scrollHeight - django.jQuery("#log-window").height());
+		logWindow.scrollTop(logWindow[0].scrollHeight - logWindow.height());
 	}
 	else{
-		django.jQuery("#log-window").scrollTop(LogTailer.currentScrollPosition);
+		logWindow.scrollTop(LogTailer.currentScrollPosition);
 	}
 	window.clearTimeout(LogTailer.timeout_id);
 	LogTailer.timeout_id = window.setTimeout("LogTailer.getLines("+LogTailer.file_id+")", LogTailer.timeout);
@@ -94,21 +100,19 @@ LogTailer.stopReading = function (){
 LogTailer.changeAutoScroll = function(){
 	if(LogTailer.scroll){
       	LogTailer.scroll = false;
-      	django.jQuery('#auto-scroll').val("OFF");
-      	django.jQuery('#auto-scroll').css('color', 'red');
+      	django.jQuery('#auto-scroll').val("OFF").css('color', 'red');
     }
     else{
       	LogTailer.scroll = true;
-      	django.jQuery('#auto-scroll').val("ON");
-      	django.jQuery('#auto-scroll').css('color', 'green');
+      	django.jQuery('#auto-scroll').val("ON").css('color', 'green');
     }
 }
 
 LogTailer.customFilter = function(){
-	if(django.jQuery('#filter-select').val()=="custom"){
+	if(django.jQuery('#filter-select').val()==="custom"){
 	    django.jQuery('#filter').show();
 	}
 	else{
 		django.jQuery('#filter').hide();
 	}
-}
+};

@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 20:11+0800\n"
+"POT-Creation-Date: 2019-04-24 21:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yalei Du <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: zh_CN\n"
+"Language: zh-Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:6 models.py:18 models.py:30 templates/logtailer/log_reader.html:31
+#: models.py:6 models.py:18 models.py:30 templates/logtailer/log_reader.html:30
 msgid "name"
 msgstr "名称"
 
@@ -45,11 +45,11 @@ msgstr ""
 msgid "filter"
 msgstr "过滤器"
 
-#: models.py:26 templates/logtailer/log_reader.html:11
+#: models.py:26 templates/logtailer/log_reader.html:12
 msgid "filters"
 msgstr "过滤器"
 
-#: models.py:31 templates/logtailer/log_reader.html:32
+#: models.py:31 templates/logtailer/log_reader.html:31
 msgid "notes"
 msgstr ""
 
@@ -73,23 +73,27 @@ msgstr "开始监听"
 msgid "stop_read"
 msgstr "停止监听"
 
-#: templates/logtailer/log_reader.html:13
+#: templates/logtailer/log_reader.html:8
+msgid "clear"
+msgstr "清空"
+
+#: templates/logtailer/log_reader.html:14
 msgid "apply"
 msgstr "启用过滤器"
 
-#: templates/logtailer/log_reader.html:17
+#: templates/logtailer/log_reader.html:18
 msgid "auto_scroll"
 msgstr "自动滚动"
 
-#: templates/logtailer/log_reader.html:18
+#: templates/logtailer/log_reader.html:19
 msgid "save_selected_rows"
 msgstr "保存选中行"
 
-#: templates/logtailer/log_reader.html:30
+#: templates/logtailer/log_reader.html:29
 msgid "save_logs"
 msgstr "保存日志"
 
-#: templates/logtailer/log_reader.html:37
+#: templates/logtailer/log_reader.html:36
 msgid "save"
 msgstr "保存"
 
@@ -104,6 +108,3 @@ msgstr "错误：未找到日志文件"
 #: views.py:83
 msgid "loglines_saved"
 msgstr "已保存"
-
-msgid "clear"
-msgstr "清空"

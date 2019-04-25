@@ -15,4 +15,7 @@ urlpatterns = [
     url(r'^save-to-clipboard/$',
         views.save_to_clipoard,
         name="logtailer_save_to_clipboard"),
+    url(r'^find-logs/(?P<file_id>\d+)/$',
+        views.find_logs,
+        name="logtailer_find_history"),
 ]

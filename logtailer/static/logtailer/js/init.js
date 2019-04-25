@@ -6,6 +6,10 @@ django.jQuery('#stop-button').click(function() {
     LogTailer.stopReading();
 });
 
+django.jQuery('#findhistory-button').click(function() {
+    LogTailer.readingHistory();
+});
+
 django.jQuery('#clear-button').click(function () {
 	django.jQuery('#log-window').html("");
 });
@@ -17,7 +21,22 @@ django.jQuery('#filter-select').change(function() {
 	LogTailer.customFilter();
 });
 
-django.jQuery('#log-window').html("")
+django.jQuery('#log-method').change(function () {
+	let val = django.jQuery('#log-method').val();
+	if (val === 'history'){
+		django.jQuery('#stop-button').click().hide();
+		django.jQuery('#start-button').hide();
+		django.jQuery('#findhistory-button').show();
+
+	}else{
+		django.jQuery('#start-button').show();
+		django.jQuery('#stop-button').hide();
+		django.jQuery('#findhistory-button').show();
+	}
+
+});
+
+django.jQuery('#log-window').html("");
 LogTailer.customFilter();
 
 django.jQuery("#save-logs").colorbox({width:"500px",

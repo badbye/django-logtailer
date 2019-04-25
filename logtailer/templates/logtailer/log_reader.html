@@ -3,19 +3,23 @@
 <form id="logfile_form" action="">
 	<div>
 		<div class="submit-row" style="text-align: left;">
+			<select name="method-switch" id="log-method">
+				<option value="realtime"> {% trans "realtime log" %} </option>
+				<option value="history"> {% trans "history log" %} </option>
+			</select>
 			<input type="button" id="start-button" value="{% trans "start_read" %}">
 			<input type="button" id="stop-button" style="display: none;" value="{% trans "stop_read" %}">
+			<input type="button" id="findhistory-button" style="display: none;" value="{% trans "start_find" %}">
 			<input type="button" id="clear-button" value="{% trans "clear" %}">
-			&nbsp;&nbsp;&nbsp;
-			|
-			&nbsp;&nbsp;&nbsp;
+
+
+			<span class="vertical-line"></span>
 			{% trans "filters" %}: &nbsp;
 			{% filters_select %}
 			<input type="text" id="filter" style="display: none; border: inherit; background-color: #fff; color: #000; cursor: text; height: 15px;" class="vTextField"  /> {% trans "apply" %}<input type="checkbox" id="apply-filter" value="1">
-			&nbsp;&nbsp;&nbsp;
-			|
-			&nbsp;&nbsp;&nbsp;
-			 {% trans "auto_scroll" %}: <input type="button" id="auto-scroll" style="color: green;" value="ON">
+
+			<span class="vertical-line"></span>
+			 {% trans "auto_scroll" %}: <input type="button" id="auto-scroll" value="ON" style="width: 50px">
 			 <a id="save-logs" href="#"><input style="float: right;" type="button" id="save-rows" value="{% trans "save_selected_rows" %}"></a>
 		</div>
 		<div style="text-align: center; width: 100%; margin-bottom: 5px;">
@@ -45,4 +49,5 @@
 	LogTailer.file_id = {{logfile_id}};
 	var clipboard_url = "{% url "logtailer_save_to_clipboard" %}"
 </script>
+<script type="text/javascript" src="{% static 'logtailer/js/jquery.colorbox.js' %}"></script>
 <script type="text/javascript" src="{% static 'logtailer/js/init.js' %}"></script>

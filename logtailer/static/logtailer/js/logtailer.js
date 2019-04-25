@@ -9,7 +9,7 @@ var LogTailer = {
 	file_id: 0,
 	first_read: true,
 	highlight: true,
-	// max_lines: 500
+	max_lines: 500
 };
 var _highlight = function(str, pattern, custom_class='log-highlight'){
 	let matched_text = str.match(pattern)[0];
@@ -24,7 +24,6 @@ LogTailer.getLines = function (){
 	  		   },
 	  dataType: "json"
 	});
-
 }
 
 LogTailer.getHistory = function ( callback ){
@@ -38,9 +37,9 @@ LogTailer.getHistory = function ( callback ){
 	  dataType: "json"
 	});
 
-}
+};
 
-LogTailer.printLines = function(result){
+LogTailer.printLines = function(result, keep_reading=true){
 	let logWindow = django.jQuery("#log-window");
 	if(django.jQuery("#apply-filter").is(':checked')){
 		for(var i=0;i<result.length;i++){
@@ -74,7 +73,7 @@ LogTailer.printLines = function(result){
 		logWindow.scrollTop(LogTailer.currentScrollPosition);
 	}
 	window.clearTimeout(LogTailer.timeout_id);
-	LogTailer.timeout_id = window.setTimeout("LogTailer.getLines("+LogTailer.file_id+")", LogTailer.timeout);
+	if (keep_reading) LogTailer.timeout_id = window.setTimeout("LogTailer.getLines("+LogTailer.file_id+")", LogTailer.timeout);
 }
 
 LogTailer.startReading = function (){
@@ -94,17 +93,27 @@ LogTailer.stopReading = function (){
 	window.clearTimeout(LogTailer.timeout_id);
 	django.jQuery("#stop-button").hide();
 	django.jQuery("#start-button").show();
-}
+};
 
+LogTailer.readingHistory = function (){
+	LogTailer.currentScrollPosition = django.jQuery("#log-window").html("").scrollTop();
+	django.jQuery.ajax({
+	  url: LOGTAILER_URL_FINDHISTORY,
+	  success: function(result){
+	  				LogTailer.printLines(result, keep_reading=false);
+	  		   },
+	  dataType: "json"
+	});
+};
 
 LogTailer.changeAutoScroll = function(){
 	if(LogTailer.scroll){
       	LogTailer.scroll = false;
-      	django.jQuery('#auto-scroll').val("OFF").css('color', 'red');
+      	django.jQuery('#auto-scroll').val("OFF").css('color', 'mediumvioletred');
     }
     else{
       	LogTailer.scroll = true;
-      	django.jQuery('#auto-scroll').val("ON").css('color', 'green');
+      	django.jQuery('#auto-scroll').val("ON").css('color', '#fff');
     }
 }
 

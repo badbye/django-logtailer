@@ -1,4 +1,5 @@
 import os
+import re
 import json
 from django.http import HttpResponse
 from django.template import RequestContext
@@ -11,13 +12,14 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 
 HISTORY_LINES = getattr(settings, 'LOGTAILER_HISTORY_LINES', 0)
+MAX_LIMIT_HISTORY = getattr(settings, 'LOGTAILER_LIMIT_LINES', 1000)
 
 
 @staff_member_required
 def read_logs(request):
     context = {}
     return render_to_response('logtailer/log_reader.html',
-                              context, 
+                              context,
                               RequestContext(request, {}),)
 
 
@@ -81,3 +83,35 @@ def save_to_clipoard(request):
                            log_file = LogFile.objects\
                            .get(id=int(request.POST['file']))).save()
     return HttpResponse(_('loglines_saved'), content_type='text/html')
+
+
+@staff_member_required
+def find_logs(request, file_id, history=False):
+    try:
+        file_record = LogFile.objects.get(id=file_id)
+    except LogFile.DoesNotExist:
+        return HttpResponse(json.dumps([_('error_logfile_notexist')]),
+                            content_type='text/html')
+    # pattern = request.GET.get('pattern', '')
+    content = _tail_lines(file_record.path, lines=MAX_LIMIT_HISTORY)
+    content = [line.replace('\n', '<br/>') for line in content]
+    return HttpResponse(json.dumps(content), content_type='application/json')
+
+
+def _tail_lines(fname, lines=MAX_LIMIT_HISTORY):
+    bufsize = 8192
+    fsize = os.stat(fname).st_size
+    iter = 0
+    with open(fname, 'r') as f:
+        if bufsize > fsize:
+            bufsize = fsize - 1
+        data = []
+        while True:
+            iter += 1
+            if fsize < bufsize * iter:
+                break
+            f.seek(fsize - bufsize * iter)
+            data.extend(f.readlines())
+            if len(data) >= lines or f.tell() == 0:
+                break
+    return data[-lines:]

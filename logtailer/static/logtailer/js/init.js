@@ -31,7 +31,7 @@ django.jQuery('#log-method').change(function () {
 	}else{
 		django.jQuery('#start-button').show();
 		django.jQuery('#stop-button').hide();
-		django.jQuery('#findhistory-button').show();
+		django.jQuery('#findhistory-button').hide();
 	}
 
 });

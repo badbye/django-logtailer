@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 21:38+0800\n"
+"POT-Creation-Date: 2019-04-25 15:44+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mauro Rocco <mauro.rocco@toforge.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:6 models.py:18 models.py:30 templates/logtailer/log_reader.html:30
+#: models.py:6 models.py:18 models.py:30 templates/logtailer/log_reader.html:34
 msgid "name"
 msgstr "Nome"
 
@@ -49,11 +49,11 @@ msgstr "Pattern"
 msgid "filter"
 msgstr "Filtro"
 
-#: models.py:26 templates/logtailer/log_reader.html:12
+#: models.py:26 templates/logtailer/log_reader.html:17
 msgid "filters"
 msgstr "Filtri"
 
-#: models.py:31 templates/logtailer/log_reader.html:31
+#: models.py:31 templates/logtailer/log_reader.html:35
 msgid "notes"
 msgstr "Note"
 
@@ -73,35 +73,49 @@ msgstr "Log file"
 msgid "logs clipboard"
 msgstr "Appunti"
 
-#: templates/logtailer/log_reader.html:6
+#: templates/logtailer/log_reader.html:7
+msgid "realtime log"
+msgstr ""
+
+#: templates/logtailer/log_reader.html:8
+msgid "history log(last 1000 lines)"
+msgstr ""
+
+#: templates/logtailer/log_reader.html:10
 msgid "start_read"
 msgstr "Inizia la lettura"
 
-#: templates/logtailer/log_reader.html:7
+#: templates/logtailer/log_reader.html:11
 msgid "stop_read"
 msgstr "Ferma la lettura"
 
-#: templates/logtailer/log_reader.html:8
+#: templates/logtailer/log_reader.html:12
+#, fuzzy
+#| msgid "start_read"
+msgid "start_find"
+msgstr "Inizia la lettura"
+
+#: templates/logtailer/log_reader.html:13
 msgid "clear"
 msgstr ""
 
-#: templates/logtailer/log_reader.html:14
+#: templates/logtailer/log_reader.html:19
 msgid "apply"
 msgstr "Applica"
 
-#: templates/logtailer/log_reader.html:18
+#: templates/logtailer/log_reader.html:22
 msgid "auto_scroll"
 msgstr "Scroll automatico"
 
-#: templates/logtailer/log_reader.html:19
+#: templates/logtailer/log_reader.html:23
 msgid "save_selected_rows"
 msgstr "Salve le linee selezionate"
 
-#: templates/logtailer/log_reader.html:29
+#: templates/logtailer/log_reader.html:33
 msgid "save_logs"
 msgstr "Salva Logs"
 
-#: templates/logtailer/log_reader.html:36
+#: templates/logtailer/log_reader.html:40
 msgid "save"
 msgstr "Salva"
 
@@ -109,10 +123,10 @@ msgstr "Salva"
 msgid "custom"
 msgstr "personalizzato"
 
-#: views.py:54
+#: views.py:56 views.py:93
 msgid "error_logfile_notexist"
 msgstr "Errore: Il file di log non esiste"
 
-#: views.py:83
+#: views.py:85
 msgid "loglines_saved"
 msgstr "Linee del log salvate"

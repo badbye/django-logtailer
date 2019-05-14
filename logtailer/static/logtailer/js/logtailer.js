@@ -43,6 +43,7 @@ LogTailer.printLines = function(result, keep_reading=true){
 	let logWindow = django.jQuery("#log-window");
 	if(django.jQuery("#apply-filter").is(':checked')){
 		for(var i=0;i<result.length;i++){
+			let res = decodeURIComponent(result[i])
 			pattern = django.jQuery("#filter").val();
 			if(django.jQuery('#filter-select').val()!="custom"){
 				pattern = django.jQuery('#filter-select').val();
@@ -53,16 +54,16 @@ LogTailer.printLines = function(result, keep_reading=true){
 			catch(err) {
 			    regex = pattern;
 			}
-			position = result[i].search(regex);
+			position = res.search(regex);
 			if(position>-1){
-				logWindow.append(LogTailer.highlight ? _highlight(result[i], regex) : result[i]);
+				logWindow.append(LogTailer.highlight ? _highlight(res, regex) : res);
 			}
 		}
 	}
 	else{
 		for(var i=0;i<result.length;i++){
 			if(result[i].length>0){
-				logWindow.append(result[i]);
+				logWindow.append(decodeURIComponent(result[i]));
 			}
 		}
 	}

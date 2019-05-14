@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: django-logtailer
-Version: 1.0.3
+Version: 1.0.4
 Summary: Allows to read log files from disk with a tail like web console on Django admin interface. 
 Home-page: https://github.com/fireantology/django-logtailer
 Author: Mauro Rocco

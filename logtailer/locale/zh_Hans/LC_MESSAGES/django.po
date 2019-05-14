@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 15:34+0800\n"
+"POT-Creation-Date: 2019-04-25 15:44+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yalei Du <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,8 +82,6 @@ msgid "stop_read"
 msgstr "停止监听"
 
 #: templates/logtailer/log_reader.html:12
-#, fuzzy
-#| msgid "start_read"
 msgid "start_find"
 msgstr "开始查找"
 
